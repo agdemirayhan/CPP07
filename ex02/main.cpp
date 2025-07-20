@@ -1,53 +1,57 @@
 #include <iostream>
-#include "Array.hpp"
+#include "Array.tpp"
 
-#define MAX_VAL 750
-int main(int, char**)
+#define PRINT(P) std::cout << P << std::endl
+
+template <typename T>
+void printArray(Array<T> &array)
 {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        const int value = rand();
-        numbers[i] = value;
-        mirror[i] = value;
-    }
-    //SCOPE
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
+    std::cout << "Size :\t" << array.size() << std::endl;
+    std::cout << "Array:\t";
+    for (unsigned int i = 0; i < array.size(); i++)
+        std::cout << array[i] << " ";
+    std::cout << std::endl;
+}
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
-        }
-    }
+int main()
+{
+    Array<int> array(20);
+
+    for (unsigned int i = 0; i < array.size(); i++)
+        array[i] = i;
+
+    PRINT("----Array 1----");
+    printArray(array);
+
+    Array<int> array2(array);
+
+    PRINT("\n----Array 2 - Copy Constructed of Array 1----");
+    printArray(array2);
+
+    Array<int> array3;
+    array3 = array2;
+    array2[0] = 14;
+
+    PRINT("\n----Array 3 - Copy Assigned of Array 2----");
+    printArray(array3);
+
+    PRINT("\n----Array 2 - Modified----");
+    printArray(array2);
+
+    PRINT("\n----Exception----");
     try
     {
-        numbers[749] = 0;
+        std::cout << array[21] << std::endl;
     }
-    catch(const std::exception& e)
+    catch (std::exception &e)
     {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << std::endl;
     }
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-    delete [] mirror;
+    Array<int> array4;
+    PRINT("Array 4 - Default Constructed");
+    printArray(array4);
+    PRINT("");
+
     return 0;
 }

@@ -17,7 +17,6 @@ public:
     ~Array();                              
 
     T& operator[](unsigned int index);             
-    const T& operator[](unsigned int index) const; 
 
     unsigned int size() const;             
 };

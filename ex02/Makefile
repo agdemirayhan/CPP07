@@ -1,7 +1,7 @@
 NAME = array_test
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++17
 
 SRC = main.cpp
 HEADERS = Array.hpp Array.tpp
