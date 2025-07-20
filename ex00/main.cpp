@@ -12,7 +12,7 @@ int main() {
     std::cout << "max(a, b) = " << ::max(a, b) << std::endl;
 
     std::string c = "chaine1";
-    std::string d = "chaine2";
+    std::string d = "chaine0";
 
     ::swap(c, d);
     std::cout << "c = " << c << ", d = " << d << std::endl;

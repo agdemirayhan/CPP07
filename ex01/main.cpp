@@ -12,15 +12,15 @@ void increment(T& x) {
 }
 
 int main() {
-    int numbers[] = {1, 2, 3, 4, 5};
-    size_t len = sizeof(numbers) / sizeof(numbers[0]);
+    int array[] = {1, 2, 3, 4, 5};
+    size_t len = sizeof(array) / sizeof(array[0]);
 
     std::cout << "Original array:" << std::endl;
-    iter(numbers, len, printElement<int>);
+    iter(array, len, printElement<int>);
 
     std::cout << "\nAfter incrementing:" << std::endl;
-    iter(numbers, len, increment<int>);
-    iter(numbers, len, printElement<int>);
+    iter(array, len, increment<int>);
+    iter(array, len, printElement<int>);
 
     std::string words[] = {"hello", "world", "template"};
     size_t wordLen = sizeof(words) / sizeof(words[0]);
